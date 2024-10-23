@@ -1,0 +1,26 @@
+<div class="fixed top-20 right-8 space-y-4 z-auto">
+    <div div *ngFor="let msg of messages" class="scroll-p-1">
+      <div class="card card-compact min-w-36 shadow-xl text-black" [ngClass]="{
+        'bg-green-300': msg.type === 'success',
+        'bg-rose-400': msg.type === 'error',
+        'bg-yellow-300': msg.type === 'warning',
+        'bg-primary text-primary': msg.type === 'info'
+      }">
+        <figure>
+        </figure>
+        <div class="card-body">
+          <i class="fas" [ngClass]="{
+            'fa-check': msg.type === 'success',
+            'fa-triangle-exclamation': msg.type === 'error' || msg.type === 'warning',
+            'fa-info': msg.type === 'info'
+          }"></i>
+          <p>{{msg.message}}</p>
+          <div class="card-actions justify-end">
+            <button (click)="removeToast(msg)">
+              <i class="fas fa-close"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
