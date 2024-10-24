@@ -3,11 +3,13 @@ import { RouterOutlet } from '@angular/router';
 import { ToastService } from './toast.service';
 import { ToastComponent } from "./toast/toast.component";
 import { randomUUID } from 'crypto';
+import { HomeComponent } from "./home/home.component";
+import { NavComponent } from "./nav/nav.component";
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, ToastComponent],
+  imports: [RouterOutlet, ToastComponent, HomeComponent, NavComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
