@@ -14,7 +14,7 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes), provideClientHydration(),
     importProvidersFrom(
       FormsModule,
-      InMemoryWebApiModule.forRoot(AppData, {delay: 500})
+      InMemoryWebApiModule.forRoot(AppData, {delay: 200})
     )
   ]
 };

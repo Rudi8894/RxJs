@@ -1,29 +1,39 @@
+
+
 @if (this.products) {
-    <div class="flex flex-wrap gap-4 m-10">
-        @for (product of products; track $index) {
-            <div class="card bg-base-100 w-96 border">
+    <div class="drawer drawer-end">
+        <input id="my-drawer" type="checkbox" class="drawer-toggle" />
+            <div class="drawer-content">
+                <!-- Page content here -->
+                <div class="flex flex-wrap gap-4 m-10">
+                    @for (product of products; track $index) {
+                        <div class="card bg-base-100 w-96 border border-gray-600">
 
-                <div class="card-body">
-                    <div class="card-title">
-                        {{product.productName}}
-                    </div>
-                    <p>{{product.description}}</p>
-                    <div class="card-actions justify-end mt-5">
-                        <button [routerLink]="['/products', product.id]" routerLinkActive="router-link-active"  class="btn btn-primary">
-                            Details
-                            <i class="fas fa-magnifying-glass"></i>
+                            <div class="card-body">
+                                <div class="card-title">
+                                    {{product.productName}}
+                                </div>
+                                <p>{{product.description}}</p>
+                                <div class="card-actions justify-end mt-5">
+                                    <label (click)="onSelected(product.id)" for="my-drawer" class="btn btn-primary drawer-button">
+                                        Details
+                                        <i class="fas fa-magnifying-glass"></i>
+                                    </label>
+                                    <button class="btn btn-primary">
+                                        To Cart
+                                        <i class="fas fa-shopping-cart"></i>
 
-                        </button>
-                        <button class="btn btn-primary">
-                            To Cart
-                            <i class="fas fa-shopping-cart"></i>
+                                    </button>
 
-                        </button>
-
-                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
                 </div>
             </div>
-        }
+        <div class="drawer-side">
+        <label for="my-drawer" aria-label="close sidebar" class="drawer-overlay"></label>
+        <app-product-details [selectedProduct]="this.selectedProductId"></app-product-details>
+        </div>
     </div>
-
 }

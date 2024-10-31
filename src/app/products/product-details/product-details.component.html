@@ -1,5 +1,5 @@
 @if (this.product) {
-    <div class="card bg-base-100 w-96 border m-10">
+    <div class="card bg-base-100 w-96 border m-5 border-gray-600">
 
         <div class="card-body">
             <div class="card-title">
@@ -21,10 +21,10 @@
                 Reviews: {{product.reviews}}
             </p>
             <div class="card-actions justify-end mt-5">
-                <button routerLink="/products"  class="btn btn-primary">
-                    <i class="fas fa-chevron-left"></i>
-                    Back    
-                </button>
+                <label for="my-drawer" class="btn btn-primary drawer-button">
+                    Cancel
+                    <i class="fas fa-close"></i>
+                </label>
                 <button class="btn btn-primary">
                     To Cart
                     <i class="fas fa-shopping-cart"></i>

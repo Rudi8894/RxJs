@@ -4,11 +4,12 @@ import { ProductService } from '../product.service';
 import { Subscription, tap } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
+import { ProductDetailsComponent } from "../product-details/product-details.component";
 
 @Component({
   selector: 'app-product-list',
   standalone: true,
-  imports: [RouterModule],
+  imports: [RouterModule, ProductDetailsComponent],
   templateUrl: './product-list.component.html',
   styleUrl: './product-list.component.css'
 })
@@ -32,6 +33,10 @@ export class ProductListComponent implements OnInit, OnDestroy {
   }
   ngOnDestroy(): void {
     this.sub?.unsubscribe();
+  }
+
+  onSelected(productId: number){
+    this.selectedProductId = productId;
   }
   
   
