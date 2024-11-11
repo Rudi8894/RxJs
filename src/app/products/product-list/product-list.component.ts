@@ -1,39 +1,34 @@
 import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
-import { Product } from '../product';
 import { ProductService } from '../product.service';
-import { Subscription, tap } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+import { catchError, EMPTY, tap } from 'rxjs';
 import { RouterModule } from '@angular/router';
 import { ProductDetailsComponent } from "../product-details/product-details.component";
+import { AsyncPipe, CommonModule, NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-product-list',
   standalone: true,
-  imports: [RouterModule, ProductDetailsComponent],
+  imports: [RouterModule, ProductDetailsComponent, AsyncPipe],
   templateUrl: './product-list.component.html',
   styleUrl: './product-list.component.css'
 })
-export class ProductListComponent implements OnInit, OnDestroy {
+export class ProductListComponent{
   pageTitle =  'Products';
   errorMessage ='';
-  sub!: Subscription;
-  products: Product[]= [];
   
   constructor(private productService: ProductService){
 
   }
 
   selectedProductId: number = 0;
-
-  ngOnInit(): void {
-    this.sub = this.productService.getProducts()
-      .pipe(
-        tap(()=> console.log('In Compon. Pipeline'))
-      ).subscribe(products=> this.products = products);
-  }
-  ngOnDestroy(): void {
-    this.sub?.unsubscribe();
-  }
+  readonly products$ = this.productService.products$
+  .pipe(
+    tap(()=> console.log('In Compon. Pipeline')),
+    catchError(err=> {
+      this.errorMessage = err;
+      return EMPTY;
+    })
+  );
 
   onSelected(productId: number){
     this.selectedProductId = productId;

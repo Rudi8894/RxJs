@@ -18,8 +18,22 @@
                 In Stock: {{product.quantityInStock}}
             </p>
             <p>
-                Reviews: {{product.reviews}}
+                Reviews:
             </p>
+            <div>
+                <ul>
+                    @for (item of product.reviews; track $index) {
+                        <li class="list-item">
+                            <a>
+                                <span>{{item.userName}}: </span>
+                                <span>{{item.text}}</span>
+                            </a>
+                            <hr class="my-5">
+
+                        </li>
+                    }
+                </ul>
+            </div>
             <div class="card-actions justify-end mt-5">
                 <label for="my-drawer" class="btn btn-primary drawer-button">
                     Cancel

@@ -8,6 +8,10 @@ import { ProductDetailsComponent } from './products/product-details/product-deta
 
 export const routes: Routes = [
     {
+        path:'obs',
+        component: ObservablesComponent
+    },
+    {
         path:'home',
         component: HomeComponent
     },

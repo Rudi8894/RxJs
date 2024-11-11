@@ -1,6 +1,10 @@
 
-
-@if (this.products) {
+@if(errorMessage){
+    <div>
+        {{this.errorMessage}}
+    </div>
+}
+@if (this.products$ | async; as products) {
     <div class="drawer drawer-end">
         <input id="my-drawer" type="checkbox" class="drawer-toggle" />
             <div class="drawer-content">
